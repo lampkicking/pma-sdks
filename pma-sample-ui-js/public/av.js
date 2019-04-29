@@ -1,21 +1,16 @@
 (function() {
-    // your page initialization code here
-    // the DOM will be available here
-    
-    var bid = 'e3d115a8-d5c9-4144-b796-a64e2786c562';
     var bidPair = location.search.replace('?','').split('&').filter(pair => pair.indexOf('bid') === 0);
+    if (bidPair && bidPair[0]) bid = bidPair[0].split('=')[1];
 
     window.document.onkeyup = function(e) {
         if(e.key === 'Escape') {
             closeLightBox();
         }
     }
-
-
-    if (bidPair && bidPair[0]) bid = bidPair[0].split('=')[1];
-
-    var pma = new PMA(bid, null, 'stg0.www');
     
+    
+    var pma = new PMA(bid, null, 'stg0.www');
+
 
     function init() {
         console.log('no token');
@@ -51,7 +46,7 @@
 
     document.getElementById('overlay').onclick = closeLightBox;
     document.getElementById('bid-txt').value = bid;
-    document.getElementById('bid-txt').onclick = function() {
+    document.getElementById('bid-txt').onblur = function() {
         pma = new PMA(document.getElementById('bid-txt').value, null, document.getElementById('env').value);
     }
 

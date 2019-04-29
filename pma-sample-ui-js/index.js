@@ -10,7 +10,7 @@ const server = https.createServer({
 
 
 app.use(express.static('public'))
-server.listen(19000, (err) => {
+server.listen(3000, (err) => {
     if(err) {
         console.error(`exiting because: ${err.message}`);
         process.exit(1)
