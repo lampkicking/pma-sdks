@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <script src=pma.sdk.js></script>
+        <link rel="stylesheet" type=text/css href=av.css>
+    </head>
+
+    <body>
+        <h2>Your site here</h2>
+        <div id='pma-controls' class='show'>
+            <a href=javascript:void(0) id=prove-my-age-btn>Age Verify: ProveMyAge</a> <br><br><br>
+            <a href=javascript:void(0) id=prove-my-age-camera-btn>Scan: ProveMyAge</a> <br><br><br>
+            <a href=javascript:void(0) id=prove-my-age-yoti-btn>Yoti: ProveMyAge</a> <br><br><br>
+            <a href=javascript:void(0) id=prove-my-age-token-btn>Token: ProveMyAge</a> <br><br><br>
+
+            <select id='env'>
+                <option value='stg0.www'>Staging</option>
+                <option value='dev0.www'>Development</option>
+                <option value='preprod0.www'>Preprod</option>
+                <option value='www'>Production</option>
+                <option value='sandbox'>Sandbox</option>
+            </select>
+    
+            <input type='text' id='bid-txt' value='e3d115a8-d5c9-4144-b796-a64e2786c562' onblur=updateBid />
+        </div>
+    
+        <div id='overlay' class='hide'>
+            <div id=age-verification></div>
+        </div>
+        
+        <script src=av.js></script>
+    </body>
+</html>
