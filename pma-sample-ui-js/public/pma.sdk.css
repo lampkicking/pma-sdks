@@ -1,0 +1,17 @@
+#pma-sdk-overlay {
+    background-color: black;
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    text-align: center;
+}
+
+#pma-sdk-iframe {
+    border: none;
+    margin: auto 30px auto auto;
+}
+        

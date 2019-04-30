@@ -1,14 +1,19 @@
 #PMA SDKS
 
-## pma.browser.js 
+## browser/pma.sdk.min.js
 
 pma.browser.js can be loaded into a html page, it should be loaded synchronously (blocking) to ensure that adult content is not rendered while checks are being performed. 
 
-```const pma = new PMA(<brand id>, <your validation endpoint>, <boolean testing?>);```
+```const pma = new PMA(<brand id>, <your validation endpoint>);```
 
 - brand id: This is unique to your brand. If you try using an invalid brand id, or someone else's brand id, the data returned may not be valid.
 - validation endpoint: This is where you want your users to be sent after age verifcation if you dont use an iframe.
-- testing: Set this attribute to bre try when you are not in production.
+
+By default, the pma object will use *www.provemyage.com*, however during testing you are advised to set the pma domain to point at *sandbox.provemyage.com*
+
+```pma.domain = 'sandbox.provemyage.com';```
+
+
 
 ### Check for an age token
 

@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
     <head>
-        <script src=pma.sdk.js></script>
+        <script src=pma.sdk.min.js></script>
+        <link rel="stylesheet" type=text/css href=pma.sdk.css>
         <link rel="stylesheet" type=text/css href=av.css>
     </head>
 
@@ -12,19 +13,8 @@
             <a href=javascript:void(0) id=prove-my-age-camera-btn>Scan: ProveMyAge</a> <br><br><br>
             <a href=javascript:void(0) id=prove-my-age-yoti-btn>Yoti: ProveMyAge</a> <br><br><br>
             <a href=javascript:void(0) id=prove-my-age-token-btn>Token: ProveMyAge</a> <br><br><br>
-
-            <select id='env'>
-                <option value='www'>Production</option>
-                <option value='sandbox'>Sandbox</option>
-            </select>
-    
-            <input type='text' id='bid-txt' onblur=updateBid />
         </div>
     
-        <div id='overlay' class='hide'>
-            <div id=age-verification></div>
-        </div>
-        
         <script src=av.js></script>
     </body>
 </html>
