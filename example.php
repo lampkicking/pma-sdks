@@ -1,14 +1,9 @@
-<?php 
-function validate($request, $response) {
-    $query = array();
-    
-    foreach($request->query as $key => $val) {
-        if ($key != 'signature') {
-            $query = $query .'&' . $key . '=' . $val;
-        }
-    }
+<?php
+$query = $_GET;
+ksort($query);
+unset($query['signature']);
+$message = hash_hmac('sha256', $query['cid'] . '?' . http_build_query($query), PMA_SECRET);
 
-    $message = hash_hmac('sha256', $query, $secret);
-
-    $request->session->ageVerified = $message == $request->query->signature;
+ if ($message == $_GET['signature']) {
+  // Passed age check...
 }

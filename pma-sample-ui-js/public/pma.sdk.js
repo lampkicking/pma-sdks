@@ -7,7 +7,7 @@ function PMA(brandId, redirect_to, sandbox) {
     var embedUrl = '/embed/?bid=' + brandId + '&redirect_to=' + (redirect_to || window.location);
     var yotiUrl = '/token/?bid=' + brandId + '&redirect_to=' + (redirect_to || window.location) + '&type=yoti';
     var iframeCount = 0;
-
+    var overlay = null;
 
     function createIframe(src, allow, width, height) {
         var iframe = document.createElement('iframe');
@@ -22,6 +22,22 @@ function PMA(brandId, redirect_to, sandbox) {
         return iframe;
     }
 
+    function getOverlay() {
+        if(!overlay) document.body.removeChild(overlay);
+        overlay = document.createElement('div');
+        overlay.style.position = 'absolute';
+        overlay.style.top = '0px';
+        overlay.style.bottom = '0px';
+        overlay.style.left = '0px';
+        overlay.style.right = '0px';
+        overlay.style.opacity = '0.9';
+        overlay.style.backgroundColor = 'black';
+        overlay.id = 'pma-overlay';
+        document.body.appendChild(overlay);
+        return overlay
+
+    }
+
     this.listen = function(callback) {
         window.addEventListener('message', function(msg){
             if(msg.origin !== window.location.origin) {
@@ -32,18 +48,36 @@ function PMA(brandId, redirect_to, sandbox) {
         document.body.appendChild(createIframe(backgroundUrl, 0, 0));
     };
 
-    this.optionsView = function(elm, width, height) {
-        if(elm) elm.appendChild(createIframe(embedUrl, 'camera;', width, height));
-        else window.location = yotiUrl;
+    this.close = function() {
+        var el = getOverlay()
+        
+        el.childNodes.map(function(node) {
+            el.removeChild(node);
+        });
+
+        el.style.display = 'none';
+    }
+
+    this.show = function() {
+        var el = getOverlay();
+        el.style.display = 'none';
+    }
+
+    this.optionsView = function(width, height) {
+        this.close();
+        getOverlay().appendChild(createIframe(embedUrl, 'camera;', width, height));
+        this.show();
     };
 
-    this.cameraView = function(elm, width, height) {
-        if(elm) elm.appendChild(createIframe(cameraUrl, 'camera;', width, height));
-        else window.location = yotiUrl;
+    this.cameraView = function(width, height) {
+        this.close();
+        getOverlay().appendChild(createIframe(cameraUrl, 'camera;', width, height));
+        this.show();
     };
 
-    this.yotiView = function(elm, width, height) {
-        if(elm) elm.appendChild(createIframe(yotiUrl, null, width, height));
-        else window.location = yotiUrl;
+    this.yotiView = function(width, height) {
+        this.close();
+        getOverlay().appendChild(createIframe(yotiUrl, null, width, height));
+        this.show();
     };
 };
