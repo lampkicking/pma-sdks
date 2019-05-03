@@ -1,5 +1,8 @@
+const crypto = require('crypto');
+
 function validate(req, res, next) {
         const [, params] = url.split('?')
+        const cid = req.query.cid;
         const keys = {};
 
         params.split('&').forEach((param) => {
@@ -17,6 +20,6 @@ function validate(req, res, next) {
             .filter(item => item.indexOf('undefined') === -1)
             .join('&');
         
-        req.session.ageVerified = crypto.createHmac('sha256', this.secret).update(message).digest('hex') == signature;
+        req.session.ageVerified = crypto.createHmac('sha256', this.secret).update(`GET&/validate/${cid}?${message}`).digest('hex') == signature;
         next();
     }

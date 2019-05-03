@@ -1,4 +1,6 @@
 require 'openssl'
 def validate(query = {})
-    OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), @secret, "#{params.map{|k,v| "#{k}=#{v}"}.join('&')}")
+    cid = query[:cid]
+    msg "GET&/validate/#{cid}?#{params.map{|k,v| "#{k}=#{v}"}.join('&')}"
+    OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), @secret, msg)
 end
