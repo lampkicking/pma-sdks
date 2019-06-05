@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import fs from 'fs';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -8,7 +9,7 @@ import { argv as commandParameters } from 'yargs';
 import { emptyPlugin, logNetworkIp } from './webpackUtils';
 
 // Dev server
-const PORT = 8080;
+const PORT = 9000;
 const devServer = {
   https: true,
   host: '0.0.0.0',

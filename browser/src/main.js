@@ -12,7 +12,8 @@ class PMA {
 
     this._host = "https://" + _domain;
     this._backgroundUrl = `/token/background/?bid=${brandId}&redirect_to=${redirectTo}`;
-    this._selectionFlowAgeVerificationUrl = `/?bid=${brandId}&redirect_to=${redirectTo}`;
+    this._selectionUrl = `/?bid=${brandId}&redirect_to=${redirectTo}`;
+    this._yotiAppUrl = `/token/?bid=${brandId}&redirect_to=${redirectTo}&type=yoti`;
   }
 
   _handleIframeMessage(event) {
@@ -77,7 +78,11 @@ class PMA {
   };
 
   optionsView() {
-    window.location = this._host + this._selectionFlowAgeVerificationUrl;
+    window.location = this._host + this._selectionUrl;
+  };
+
+  yotiAppView() {
+    window.location = this._host + this._yotiAppUrl;
   };
 
   // destroy() { // bind did not work
