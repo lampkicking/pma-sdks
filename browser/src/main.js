@@ -12,9 +12,7 @@ class PMA {
 
     this._host = "https://" + _domain;
     this._backgroundUrl = `/token/background/?bid=${brandId}&redirect_to=${redirectTo}`;
-    this._embedUrl = `/?bid=${brandId}&redirect_to=${redirectTo}`;
-    this._cameraUrl = `/token/?bid=${brandId}&redirect_to=${redirectTo}'&type=camera`;
-    this._yotiAppUrl = `/token/?bid=${brandId}&redirect_to=${redirectTo}'&type=yoti`;
+    this._selectionFlowAgeVerificationUrl = `/?bid=${brandId}&redirect_to=${redirectTo}`;
   }
 
   _handleIframeMessage(event) {
@@ -79,15 +77,7 @@ class PMA {
   };
 
   optionsView() {
-    window.location = this._host + this._yotiAppUrl;
-  };
-
-  cameraView() {
-    window.location = this._host + this._yotiAppUrl;
-  };
-
-  yotiAppView() {
-    window.location = this._host + this._yotiAppUrl;
+    window.location = this._host + this._selectionFlowAgeVerificationUrl;
   };
 
   // destroy() { // bind did not work
