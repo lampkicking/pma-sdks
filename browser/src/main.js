@@ -13,7 +13,7 @@ class PMA {
     this._host = "https://" + _domain;
     this._backgroundUrl = `/token/background/?bid=${brandId}&redirect_to=${redirectTo}`;
     this._selectionUrl = `/?bid=${brandId}&redirect_to=${redirectTo}`;
-    this._yotiAppUrl = `/token/?bid=${brandId}&redirect_to=${redirectTo}&type=yoti`;
+    this._yotiAppUrl = `/?bid=${brandId}&redirect_to=${redirectTo}&type=yoti`;
   }
 
   _handleIframeMessage(event) {
