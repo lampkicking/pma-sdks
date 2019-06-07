@@ -12,8 +12,8 @@ class PMA {
 
     this._host = "https://" + _domain;
     this._backgroundUrl = `/token/background/?bid=${brandId}&redirect_to=${redirectTo}`;
-    this._selectionUrl = `/?bid=${brandId}&redirect_to=${redirectTo}`;
-    this._yotiAppUrl = `/?bid=${brandId}&redirect_to=${redirectTo}&type=yoti`;
+    this._selectionUrl = `/token/?bid=${brandId}&redirect_to=${redirectTo}`;
+    this._yotiAppUrl = `/token/?bid=${brandId}&redirect_to=${redirectTo}&type=yoti`;
   }
 
   _handleIframeMessage(event) {
@@ -61,9 +61,15 @@ class PMA {
         }
         
         if (iframeResponse.status == 200) {
-          resolve(status, iframeResponse.message);
+          resolve({
+            status: iframeResponse.status, 
+            message: iframeResponse.message
+          });
         } else {
-          reject(status, iframeResponse.error);
+          reject({
+            status: iframeResponse.status, 
+            error: iframeResponse.error
+          });
         }
     
         this._deleteHiddenBackgroundIframe();
