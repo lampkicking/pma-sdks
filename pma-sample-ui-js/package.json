@@ -11,7 +11,7 @@
     "generate-local-key-cert": "openssl req -x509 -newkey rsa:4096 -keyout ./key.pem -out ./cert.pem -days 365 -nodes"
   },
   "dependencies": {
-    "express": "4.16.4"
+    "express": "4.19.2"
   },
   "description": "Sample app showing ProveMyAge UI integration",
   "author": "Yoti"
